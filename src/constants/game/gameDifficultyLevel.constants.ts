@@ -5,3 +5,9 @@ export const LINKS = [
 	{ linkPath: ROUTES.MEDIUM, linkContent: "MEDIUM" },
 	{ linkPath: ROUTES.HARD, linkContent: "HARD" },
 ];
+
+export const CASES = {
+	HARD: "Hard",
+	MEDIUM: "Medium",
+	EASY: "Easy",
+};

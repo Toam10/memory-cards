@@ -5,4 +5,5 @@ export const ROUTES = {
 	DIFFICULTY_LEVEL: "/DifficultyLevel",
 	BACK_SLASH: "/",
 	GAME: "/Game",
+	TRAILING_STAR: "*",
 };
