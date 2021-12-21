@@ -1,12 +1,16 @@
-import React, { useState } from "react";
 import { IBoardProps } from "../../../types/game/board.types";
 import { ICardsDeck } from "../../../types/game/cardsDeck.types";
+import FlipedCard from "../flipedCard";
+import * as Style from "./board.styles";
 
 const Board = ({ cardsDeck }: IBoardProps) => {
-	const [cards, setCards] = useState(cardsDeck);
-	const displaysTheCardsOnTheBoard = (card: ICardsDeck) => <div>{card.cardContent}</div>;
+	const displaysTheCardsOnTheBoard = (card: ICardsDeck) => <FlipedCard card={card} />;
 
-	return <>{cards.map(displaysTheCardsOnTheBoard)}</>;
+	return (
+		<Style.Container>
+			<Style.Template>{cardsDeck.map(displaysTheCardsOnTheBoard)}</Style.Template>
+		</Style.Container>
+	);
 };
 
 export default Board;
