@@ -6,12 +6,12 @@ const FlipedCard = ({ card, addCardToCompare, cardsToCompare, handleGuesses }: I
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [theSameCardIsFound, setTheSameCardIsFound] = useState(false);
 
-	const toogleCard = () => setIsFlipped(!isFlipped);
+	const openCard = () => setIsFlipped(true);
 
 	const handleFlipInnerCard = () => {
 		if (cardsToCompare.length === 2) return;
 		if (!isFlipped) addCardToCompare();
-		toogleCard();
+		openCard();
 	};
 
 	useEffect((): void => {
@@ -36,13 +36,20 @@ const FlipedCard = ({ card, addCardToCompare, cardsToCompare, handleGuesses }: I
 				}
 			}
 		}, 1000);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [card.id, cardsToCompare, cardsToCompare.length]);
 
 	return (
 		<Style.FlipedCard>
 			<Style.FlipCardInner isFlipped={isFlipped} onClick={theSameCardIsFound ? (): void => {} : handleFlipInnerCard}>
-				<Style.FlipCardFront>Front Card</Style.FlipCardFront>
-				<Style.FlipCardBack>Back Card</Style.FlipCardBack>
+				<Style.FlipCardFront>
+					<Style.FlipCardInnerFront></Style.FlipCardInnerFront>
+				</Style.FlipCardFront>
+				<Style.FlipCardBack
+					style={{
+						backgroundImage: `url(${card.cardContent})`,
+					}}
+				></Style.FlipCardBack>
 			</Style.FlipCardInner>
 		</Style.FlipedCard>
 	);

@@ -53,7 +53,24 @@ export const FlipCardFront = styled.div`
 	backface-visibility: hidden;
 	background-color: #bbb;
 	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 5px;
 `;
+
+export const FlipCardInnerFront = styled.div`
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	-webkit-backface-visibility: hidden; /* Safari */
+	backface-visibility: hidden;
+	background-color: #4444;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px 1px black;
+	color: black;
+`;
+
 export const FlipCardBack = styled.div`
 	position: absolute;
 	width: 100%;
@@ -63,4 +80,6 @@ export const FlipCardBack = styled.div`
 	background-color: dodgerblue;
 	color: white;
 	transform: rotateY(180deg);
+	background-position: center center;
+	background-size: 100% 100%;
 `;

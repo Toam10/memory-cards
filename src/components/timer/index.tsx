@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import * as Style from "./timer.styles";
 const Timer = () => {
 	const [seconds, setSeconds] = useState(0);
@@ -21,4 +21,4 @@ const Timer = () => {
 	);
 };
 
-export default Timer;
+export default memo(Timer);
