@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { IFlippedCardProps } from "../../../types/flippedCard.types";
 
 import * as Style from "./flippedCard.styles";
-const FlipedCard = ({ card, addCardToCompare, cardsToCompare }: IFlippedCardProps) => {
+const FlipedCard = ({ card, addCardToCompare, cardsToCompare, handleGuesses }: IFlippedCardProps) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [theSameCardIsFound, setTheSameCardIsFound] = useState(false);
 
@@ -15,21 +15,25 @@ const FlipedCard = ({ card, addCardToCompare, cardsToCompare }: IFlippedCardProp
 	};
 
 	useEffect((): void => {
-		setTimeout((): void => {
+		setTimeout(() => {
 			if (cardsToCompare.length === 2) {
 				const [cardVal1, cardVal2] = cardsToCompare;
 				if (
 					cardVal1.cardContent !== cardVal2.cardContent &&
 					(card.id === cardVal1.id || card.id === cardVal2.id) &&
 					cardVal1.id !== cardVal2.id
-				)
+				) {
 					setIsFlipped(false);
+					return handleGuesses(false);
+				}
 				if (
 					cardVal1.cardContent === cardVal2.cardContent &&
-					(card.id === cardVal1.id || card.id === cardVal2.id) &&
-					cardVal1.id !== cardVal2.id
-				)
+					cardVal1.id !== cardVal2.id &&
+					(card.id === cardVal1.id || card.id === cardVal2.id)
+				) {
 					setTheSameCardIsFound(true);
+					return handleGuesses(true);
+				}
 			}
 		}, 1000);
 	}, [card.id, cardsToCompare, cardsToCompare.length]);
