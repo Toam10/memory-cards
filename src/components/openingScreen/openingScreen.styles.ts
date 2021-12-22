@@ -35,3 +35,17 @@ export const ChangeThemeButton = styled.button`
 	border: 1px solid black;
 	cursor: pointer;
 `;
+export const SignOut = styled.button`
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: medium;
+	font-weight: lighter;
+	font-size: 15px;
+	border-radius: 2px;
+	border: 1px solid black;
+	cursor: pointer;
+`;

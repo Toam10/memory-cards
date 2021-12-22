@@ -1,10 +1,11 @@
 import { memo, useEffect, useState } from "react";
-import { ICardsDeck } from "../../../types/game/cardsDeck.types";
+import { IFlippedCardProps } from "../../../types/flippedCard.types";
+
 import * as Style from "./flippedCard.styles";
-const FlipedCard = ({ card, addCardToCompare, cardsToCompare }: any) => {
+const FlipedCard = ({ card, addCardToCompare, cardsToCompare }: IFlippedCardProps) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [theSameCardIsFound, setTheSameCardIsFound] = useState(false);
-	console.log("renderer");
+
 	const toogleCard = () => setIsFlipped(!isFlipped);
 
 	const handleFlipInnerCard = () => {

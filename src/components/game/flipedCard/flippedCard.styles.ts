@@ -27,7 +27,7 @@ export const FlipedCard = styled.div`
 		height: 100px;
 		font-size: small;
 	}
-	@media (max-width: 689px) and (max-height: 595px) {
+	@media (min-width: 429px) and (max-height: 595px) {
 		transition: 1s;
 		width: 25vw;
 		height: 25vw;
