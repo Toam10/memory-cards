@@ -31,9 +31,15 @@ export const getAllUsersDocuments = async () => {
 	return snapShot.docs;
 };
 
-export const updateUserRecord = async (userAuth: firebase.User, record: number) => {
+export const updateUserRecord = async (userAuth: firebase.User | null, record: number) => {
+	if (!userAuth) return;
+
 	const userRef = firestore.doc(`/users/${userAuth.uid}`);
-	await userRef.update({ ...userAuth, record });
+	const snapShot = await userRef.get();
+	const user = snapShot.data();
+	if (user?.record !== "newUser" && user?.record > record) {
+		await firestore.collection("users").doc(`${userAuth.uid}`).update({ record });
+	}
 };
 
 export default firebase;

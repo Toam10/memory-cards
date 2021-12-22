@@ -9,9 +9,16 @@ const OpeningScreen = () => {
 	const theme = useContext(ThemeContext);
 	return (
 		<Style.Container>
-			<Style.ChangeThemeButton onClick={() => theme} style={theme}>
-				Change Theme
-			</Style.ChangeThemeButton>
+			<Style.ButtonsWrapper>
+				<Style.ChangeThemeButton onClick={() => theme} style={theme}>
+					Change Theme
+				</Style.ChangeThemeButton>
+				<Link to={ROUTES.RECORDS}>
+					<Style.GoToRecords onClick={() => theme} style={theme}>
+						Records
+					</Style.GoToRecords>
+				</Link>
+			</Style.ButtonsWrapper>
 			<Style.SignOut style={theme} onClick={() => auth.signOut()}>
 				Sign Out
 			</Style.SignOut>

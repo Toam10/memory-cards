@@ -1,9 +1,12 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useContext, useEffect, useState } from "react";
+import { UserContext } from "../../contexts/auth/user.context";
+import { updateUserRecord } from "../../firebase/firebase.utils";
 
 import * as Style from "./timer.styles";
-const Timer = () => {
+const Timer = ({ isNeedToUpdateRecord, setIsNeedToUpdateRecord }: any) => {
 	const [seconds, setSeconds] = useState(0);
 	const [mins, setMins] = useState(0);
+	const currentUser = useContext(UserContext);
 
 	useEffect(() => {
 		const myTimer = setInterval(() => {
@@ -21,6 +24,16 @@ const Timer = () => {
 			}
 			setSeconds(seconds + 1);
 		}, 1000);
+
+		if (isNeedToUpdateRecord) {
+			const record = `${mins}.${seconds}`;
+			const updateDoc = async () => {
+				await updateUserRecord(currentUser, parseFloat(record));
+			};
+			updateDoc();
+			setIsNeedToUpdateRecord(false);
+		}
+
 		return () => clearInterval(myTimer);
 	});
 

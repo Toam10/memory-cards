@@ -13,12 +13,13 @@ const Board = ({ cardsDeck }: IBoardProps) => {
 	const [worngGuesses, setWorngGuesses] = useState(0);
 	const [rightGuesses, setRightGuesses] = useState(0);
 	const [openCards, setOpenCards] = useState(0);
+	const [isNeedToUpdateRecord, setIsNeedToUpdateRecord] = useState(false);
 	const navigate = useNavigate();
 	useEffect(() => {
 		if (cardsToCompare.length === 2) resetCardsToCompare();
 		if (openCards * 2 === cardsDeck.length) {
 			alert("YOU ARE THE WINNER");
-			navigate(ROUTES.BACK_SLASH, { replace: true });
+			setIsNeedToUpdateRecord(true);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [cardsDeck.length, cardsToCompare]);
@@ -55,7 +56,7 @@ const Board = ({ cardsDeck }: IBoardProps) => {
 	};
 	return (
 		<Style.Container>
-			<Timer />
+			<Timer isNeedToUpdateRecord={isNeedToUpdateRecord} setIsNeedToUpdateRecord={setIsNeedToUpdateRecord} />
 			<Guesses worngGuesses={worngGuesses} rightGuesses={rightGuesses} />
 			<Style.Template>{cardsDeck.map(displaysTheCardsOnTheBoard)}</Style.Template>
 		</Style.Container>

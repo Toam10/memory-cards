@@ -20,10 +20,41 @@ export const StartGameButton = styled.button`
 	box-shadow: 0px 0px 10px 2px white;
 `;
 
-export const ChangeThemeButton = styled.button`
+export const ButtonsWrapper = styled.div`
+	display: flex;
+	justify-items: center;
+	align-items: center;
+	flex-direction: column;
 	position: absolute;
 	top: 30px;
 	left: 30px;
+	gap: 10px;
+`;
+
+export const ChangeThemeButton = styled.button`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: lighter;
+	font-size: small;
+	border-radius: 50%;
+	background-color: inherit;
+	color: white;
+	padding: 2vw 2vw;
+	cursor: pointer;
+	box-shadow: 0px 0px 10px 2px gray;
+	width: 100px;
+	height: 100px;
+	@media (max-width: 600px) {
+		width: 80px;
+		height: 80px;
+	}
+	@media (max-width: 300px) {
+		width: 60px;
+		height: 60px;
+	}
+`;
+export const GoToRecords = styled.button`
 	display: flex;
 	justify-content: center;
 	align-items: center;

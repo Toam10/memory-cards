@@ -1,25 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { getAllUsersDocuments } from "../../firebase/firebase.utils";
+import * as Style from "./records.styles";
 
 const Records = () => {
-	const [users, setUsers] = useState<any[]>([]);
+	const [records, setRecords] = useState<any[]>([]);
 	useEffect(() => {
 		async function getAllusers() {
 			const usersDocs = await getAllUsersDocuments();
-			const newUsers = [...users];
+			const records: any[] = [];
 			console.log(usersDocs);
 
 			usersDocs.forEach((doc) => {
 				const user: any = doc.data();
-				newUsers.push(user);
+				records.push({ displayName: user.displayName, record: user.record });
 			});
-			setUsers(newUsers);
+			records.sort(function ({ record: { a, b } }) {
+				return a - b;
+			});
+
+			setRecords(records);
 		}
 		getAllusers();
 	}, []);
 
-	console.log(users);
-	return null;
+	console.log(records);
+
+	const mapRecords = (record: any) => {
+		return (
+			<>
+				<Style.Box>
+					<Style.Content>{`Name:${record.displayName} Record:${record.record}`}</Style.Content>
+				</Style.Box>
+			</>
+		);
+	};
+
+	return (
+		<Style.Container>
+			<Style.Title>Records</Style.Title>
+			{records.map(mapRecords)}{" "}
+		</Style.Container>
+	);
 };
 
 export default Records;

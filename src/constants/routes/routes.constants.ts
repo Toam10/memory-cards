@@ -6,4 +6,5 @@ export const ROUTES = {
 	BACK_SLASH: "/",
 	GAME: "/Game",
 	TRAILING_STAR: "*",
+	RECORDS: "/Records",
 };

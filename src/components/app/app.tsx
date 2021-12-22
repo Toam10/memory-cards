@@ -41,7 +41,7 @@ function App() {
 				<UserContext.Provider value={currentUser}>
 					<Routes>
 						<Route path={ROUTES.BACK_SLASH} element={currentUser ? <OpeningScreen /> : <SignIn />} />
-						<Route path="/Records" element={<Records />} />
+						<Route path={ROUTES.RECORDS} element={<Records />} />
 						<Route path={ROUTES.DIFFICULTY_LEVEL} element={<GameDifficultyLevel />} />
 						<Route path={`${ROUTES.GAME}${ROUTES.BACK_SLASH}${ROUTES.TRAILING_STAR}`} element={<Game />} />
 					</Routes>
