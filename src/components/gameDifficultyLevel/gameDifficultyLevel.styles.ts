@@ -7,7 +7,7 @@ export const Container = styled.div`
 	align-items: center;
 	flex-direction: column;
 	height: 100vh;
-	gap: 10px;
+	gap: 20px;
 `;
 
 export const DifficultyLevelButton = styled.button`
@@ -24,4 +24,8 @@ export const DifficultyLevelButton = styled.button`
 	min-width: 35%;
 	min-height: 10%;
 	cursor: pointer;
+	box-shadow: 0px 0px 20px 4px gray;
+	background-color: inherit;
+	color: white;
+	font-size: 8vw;
 `;

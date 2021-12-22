@@ -15,12 +15,12 @@ export const Wrapper = styled.div`
 	width: 180px;
 	height: 50px;
 	perspective: 1000;
-	box-shadow: 0 0 20px 2px gray;
+	box-shadow: 0 0 3px 2px gray;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	font-size: x-large;
-	background-color: #444;
-	color: white;
+	background-color: white;
+	color: black;
 	border-radius: 5px;
 `;

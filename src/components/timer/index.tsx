@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from "react";
-import { clearTimeout } from "timers";
+
 import * as Style from "./timer.styles";
 const Timer = () => {
 	const [seconds, setSeconds] = useState(0);

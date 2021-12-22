@@ -5,7 +5,7 @@ import * as Style from "./signIn.styles";
 const SignIn = () => {
 	return (
 		<Style.Container>
-			<Style.Login onClick={signInWithGoole}>Login With Google</Style.Login>
+			<Style.SignIn onClick={signInWithGoole}>Sign In With Google</Style.SignIn>
 		</Style.Container>
 	);
 };
