@@ -77,9 +77,8 @@ export const FlipCardBack = styled.div`
 	height: 100%;
 	-webkit-backface-visibility: hidden; /* Safari */
 	backface-visibility: hidden;
-	background-color: dodgerblue;
-	color: white;
 	transform: rotateY(180deg);
 	background-position: center center;
 	background-size: 100% 100%;
+	border-radius: 5px;
 `;
