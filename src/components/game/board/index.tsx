@@ -5,8 +5,6 @@ import Timer from "../../timer";
 import FlipedCard from "../flipedCard";
 import Guesses from "../gusses";
 import * as Style from "./board.styles";
-import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../constants/routes/routes.constants";
 
 const Board = ({ cardsDeck }: IBoardProps) => {
 	const [cardsToCompare, setCardsToCompare] = useState<ICardsDeck[]>([]);
@@ -14,7 +12,6 @@ const Board = ({ cardsDeck }: IBoardProps) => {
 	const [rightGuesses, setRightGuesses] = useState(0);
 	const [openCards, setOpenCards] = useState(0);
 	const [isNeedToUpdateRecord, setIsNeedToUpdateRecord] = useState(false);
-	const navigate = useNavigate();
 	useEffect(() => {
 		if (cardsToCompare.length === 2) resetCardsToCompare();
 		if (openCards * 2 === cardsDeck.length) {

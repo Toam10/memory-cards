@@ -11,4 +11,4 @@ export const theme = {
 	},
 };
 
-export const ThemeContext = React.createContext(theme.drak);
+export const ThemeContext = React.createContext({ ...theme.drak, toggleTheme: () => {} });

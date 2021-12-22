@@ -8,14 +8,26 @@ import Game from "../game";
 import GameDifficultyLevel from "../gameDifficultyLevel";
 import SignIn from "../signIn";
 import OpeningScreen from "../openingScreen";
-import { ThemeContext } from "../../contexts/theme/theme.context";
+import { theme, ThemeContext } from "../../contexts/theme/theme.context";
 import backgroundImage from "../../assets/openingScreen/background-dark.jpg";
 import backgroundImageLighter from "../../assets/openingScreen/background-light.jpg";
 import Records from "../records";
 import * as Style from "./app.styles";
 function App() {
-	const theme = useContext(ThemeContext);
+	const themes = {
+		dark: {
+			color: "white",
+			boxShadow: "0px 0px 20px 4px white",
+		},
+		light: {
+			color: "black",
+			boxShadow: "0px 0px 20px 4px black",
+		},
+	};
 	const [currentUser, setCurrentUser] = useState<null | firebase.User>(null);
+	const [themeState, setThemeState] = useState(themes.dark);
+
+	const toggleTheme = () => (themeState.color === "black" ? setThemeState(themes.dark) : setThemeState(themes.light));
 
 	useEffect(() => {
 		let unsubscribeFromAuth: null | any = null;
@@ -34,10 +46,10 @@ function App() {
 	return (
 		<Style.AppContainer
 			style={{
-				backgroundImage: theme.color === "white" ? `url(${backgroundImage})` : `url(${backgroundImageLighter})`,
+				backgroundImage: themeState.color === "white" ? `url(${backgroundImage})` : `url(${backgroundImageLighter})`,
 			}}
 		>
-			<ThemeContext.Provider value={theme}>
+			<ThemeContext.Provider value={{ ...themeState, toggleTheme: () => toggleTheme() }}>
 				<UserContext.Provider value={currentUser}>
 					<Routes>
 						<Route path={ROUTES.BACK_SLASH} element={currentUser ? <OpeningScreen /> : <SignIn />} />

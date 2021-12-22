@@ -1,13 +1,15 @@
 import React, { memo, useContext, useEffect, useState } from "react";
 import { UserContext } from "../../contexts/auth/user.context";
 import { updateUserRecord } from "../../firebase/firebase.utils";
+import { useNavigate } from "react-router-dom";
 
 import * as Style from "./timer.styles";
+import { ROUTES } from "../../constants/routes/routes.constants";
 const Timer = ({ isNeedToUpdateRecord, setIsNeedToUpdateRecord }: any) => {
 	const [seconds, setSeconds] = useState(0);
 	const [mins, setMins] = useState(0);
 	const currentUser = useContext(UserContext);
-
+	const navigate = useNavigate();
 	useEffect(() => {
 		const myTimer = setInterval(() => {
 			if (seconds >= 60) {
@@ -32,6 +34,9 @@ const Timer = ({ isNeedToUpdateRecord, setIsNeedToUpdateRecord }: any) => {
 			};
 			updateDoc();
 			setIsNeedToUpdateRecord(false);
+			setTimeout(() => {
+				navigate(ROUTES.BACK_SLASH, { replace: true });
+			}, 1200);
 		}
 
 		return () => clearInterval(myTimer);

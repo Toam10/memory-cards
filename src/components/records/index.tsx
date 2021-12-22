@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NAME, RECORDS } from "../../constants/records/records.constants";
 import { getAllUsersDocuments } from "../../firebase/firebase.utils";
 import * as Style from "./records.styles";
 
@@ -29,7 +30,7 @@ const Records = () => {
 		return (
 			<>
 				<Style.Box>
-					<Style.Content>{`Name:${record.displayName} Record:${record.record}`}</Style.Content>
+					<Style.Content>{`${NAME}:${record.displayName} ${RECORDS}:${record.record}`}</Style.Content>
 				</Style.Box>
 			</>
 		);
