@@ -1,19 +1,23 @@
-import React, { useState, useEffect } from "react";
+import { UserContext } from "../../contexts/auth/user.context";
+import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import { ROUTES } from "../../constants/routes/routes.constants";
-import { auth } from "../../firebase/firebase.utils";
+import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import firebase from "../../firebase/firebase.utils";
 import Game from "../game";
 import GameDifficultyLevel from "../gameDifficultyLevel";
 import SignIn from "../signIn";
 import OpeningScreen from "../openingScreen";
 import * as Style from "./app.styles";
 function App() {
-	const [currentUser, setCurrentUser] = useState<any>(null);
+	const [currentUser, setCurrentUser] = useState<null | firebase.User>(null);
+
 	useEffect(() => {
-		let unsubscribeFromAuth: any = null;
+		let unsubscribeFromAuth: null | any = null;
 		function authStateChange() {
-			unsubscribeFromAuth = auth.onAuthStateChanged((user: any): void => {
+			unsubscribeFromAuth = auth.onAuthStateChanged((user: firebase.User | null) => {
 				setCurrentUser(user);
+				createUserProfileDocument(user);
 			});
 		}
 		authStateChange();
@@ -24,11 +28,13 @@ function App() {
 
 	return (
 		<Style.AppContainer>
-			<Routes>
-				<Route path={ROUTES.BACK_SLASH} element={currentUser ? <OpeningScreen /> : <SignIn />} />
-				<Route path={ROUTES.DIFFICULTY_LEVEL} element={<GameDifficultyLevel />} />
-				<Route path={`${ROUTES.GAME}${ROUTES.BACK_SLASH}${ROUTES.TRAILING_STAR}`} element={<Game />} />
-			</Routes>
+			<UserContext.Provider value={currentUser}>
+				<Routes>
+					<Route path={ROUTES.BACK_SLASH} element={currentUser ? <OpeningScreen /> : <SignIn />} />
+					<Route path={ROUTES.DIFFICULTY_LEVEL} element={<GameDifficultyLevel />} />
+					<Route path={`${ROUTES.GAME}${ROUTES.BACK_SLASH}${ROUTES.TRAILING_STAR}`} element={<Game />} />
+				</Routes>
+			</UserContext.Provider>
 		</Style.AppContainer>
 	);
 }
