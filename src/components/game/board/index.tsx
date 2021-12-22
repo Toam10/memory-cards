@@ -12,10 +12,10 @@ const Board = ({ cardsDeck }: IBoardProps) => {
 	const [rightGuesses, setRightGuesses] = useState(0);
 
 	useEffect(() => {
-		if (cardsToCompare.length === 2) resetCardsToCompate();
+		if (cardsToCompare.length === 2) resetCardsToCompare();
 	}, [cardsToCompare]);
 
-	const resetCardsToCompate = (): void => {
+	const resetCardsToCompare = (): void => {
 		setTimeout(() => {
 			setCardsToCompare([]);
 		}, 1200);

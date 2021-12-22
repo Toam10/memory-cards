@@ -2,14 +2,12 @@ import React from "react";
 
 export const theme = {
 	drak: {
-		backgroundImage: "",
 		color: "white",
-		boxShow: "0px 0px 20px 4px white;",
+		boxShadow: "0px 0px 20px 4px white",
 	},
 	light: {
-		backgroundImage: "",
 		color: "black",
-		boxShow: "0px 0px 20px 4px black;",
+		boxShadow: "0px 0px 20px 4px black",
 	},
 };
 

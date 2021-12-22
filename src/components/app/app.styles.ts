@@ -1,9 +1,12 @@
 import styled from "styled-components";
-import backgroundImage from "../../assets/openingScreen/background.jpg";
 export const AppContainer = styled.div`
 	width: 100%;
-	background-image: url(${backgroundImage});
-	background-position: center;
+	background-position: center center;
 	background-size: cover;
-	background-repeat: no-repeat;
+	background-repeat: repeat-y;
+`;
+
+export const Background = styled.div`
+	position: absolute;
+	z-index: -1;
 `;

@@ -21,7 +21,13 @@ export const createUserProfileDocument = async (userAuth: firebase.User | null) 
 
 	const { displayName, email } = userAuth;
 	const createdAt = new Date();
-	await userRef.set({ displayName, email, createdAt });
+	await userRef.set({ displayName, email, createdAt, record: "newUser" });
+};
+
+export const getAllUsersDocuments = async () => {
+	const usersRef = firestore.collection("users");
+	const snapShot = await usersRef.get();
+	return snapShot.docs;
 };
 
 export default firebase;

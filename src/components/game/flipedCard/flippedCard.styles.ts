@@ -7,8 +7,8 @@ interface IFlipInnerCard {
 export const FlipedCard = styled.div`
 	background-color: transparent;
 	transition: 1s;
-	width: 200px;
-	height: 300px;
+	width: 162px;
+	height: 272px;
 	border: 1px solid #f1f1f1;
 	perspective: 1000px;
 	@media (max-width: 1044px) {
