@@ -21,13 +21,19 @@ export const createUserProfileDocument = async (userAuth: firebase.User | null) 
 
 	const { displayName, email } = userAuth;
 	const createdAt = new Date();
-	await userRef.set({ displayName, email, createdAt, record: "newUser" });
+	const record: number | string = "newUser";
+	await userRef.set({ displayName, email, createdAt, record });
 };
 
 export const getAllUsersDocuments = async () => {
 	const usersRef = firestore.collection("users");
 	const snapShot = await usersRef.get();
 	return snapShot.docs;
+};
+
+export const updateUserRecord = async (userAuth: firebase.User, record: number) => {
+	const userRef = firestore.doc(`/users/${userAuth.uid}`);
+	await userRef.update({ ...userAuth, record });
 };
 
 export default firebase;

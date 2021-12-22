@@ -2,7 +2,14 @@ import { memo, useEffect, useState } from "react";
 import { IFlippedCardProps } from "../../../types/flippedCard.types";
 
 import * as Style from "./flippedCard.styles";
-const FlipedCard = ({ card, addCardToCompare, cardsToCompare, handleGuesses }: IFlippedCardProps) => {
+const FlipedCard = ({
+	card,
+	addCardToCompare,
+	cardsToCompare,
+	handleGuesses,
+	setOpenCards,
+	openCards,
+}: IFlippedCardProps) => {
 	const [isFlipped, setIsFlipped] = useState(false);
 	const [theSameCardIsFound, setTheSameCardIsFound] = useState(false);
 
@@ -32,6 +39,7 @@ const FlipedCard = ({ card, addCardToCompare, cardsToCompare, handleGuesses }: I
 					(card.id === cardVal1.id || card.id === cardVal2.id)
 				) {
 					setTheSameCardIsFound(true);
+					setOpenCards(openCards + 1);
 					return handleGuesses(true);
 				}
 			}

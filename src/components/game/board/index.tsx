@@ -5,15 +5,23 @@ import Timer from "../../timer";
 import FlipedCard from "../flipedCard";
 import Guesses from "../gusses";
 import * as Style from "./board.styles";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../../constants/routes/routes.constants";
 
 const Board = ({ cardsDeck }: IBoardProps) => {
 	const [cardsToCompare, setCardsToCompare] = useState<ICardsDeck[]>([]);
 	const [worngGuesses, setWorngGuesses] = useState(0);
 	const [rightGuesses, setRightGuesses] = useState(0);
-
+	const [openCards, setOpenCards] = useState(0);
+	const navigate = useNavigate();
 	useEffect(() => {
 		if (cardsToCompare.length === 2) resetCardsToCompare();
-	}, [cardsToCompare]);
+		if (openCards * 2 === cardsDeck.length) {
+			alert("YOU ARE THE WINNER");
+			navigate(ROUTES.BACK_SLASH, { replace: true });
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [cardsDeck.length, cardsToCompare]);
 
 	const resetCardsToCompare = (): void => {
 		setTimeout(() => {
@@ -35,6 +43,8 @@ const Board = ({ cardsDeck }: IBoardProps) => {
 				addCardToCompare={() => addCardToCompare(card)}
 				cardsToCompare={cardsToCompare}
 				handleGuesses={handleGuesses}
+				setOpenCards={setOpenCards}
+				openCards={openCards}
 			/>
 		);
 	};

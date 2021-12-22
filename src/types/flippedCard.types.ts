@@ -5,4 +5,6 @@ export interface IFlippedCardProps {
 	addCardToCompare(): void;
 	cardsToCompare: ICardsDeck[];
 	handleGuesses(rightGuesses: boolean): void;
+	setOpenCards(number: number): void;
+	openCards: number;
 }
