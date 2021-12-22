@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { IGuessesProps } from "../../../types/game/guesses.types";
 
 const Guesses = ({ rightGuesses, worngGuesses }: IGuessesProps) => {
